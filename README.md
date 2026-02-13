@@ -13,7 +13,32 @@ The project follows the principles of **Clean Architecture** combined with the *
 - **Data Layer**: Responsible for data retrieval and persistence. Contains Repository Implementations, Models (DTOs), and Data Sources (Remote & Local).
 - **Presentation Layer**: The UI and state management logic. Contains BLoCs, Screens (Views), and Widgets.
 
-### 🗺️ Dependency Graph
+### � Folder Structure
+```text
+lib/
+├── core/               # Core framework and shared infrastructure
+│   ├── constants/      # Global constants and flavor configs
+│   ├── di/             # Global dependency injection bindings (GetX)
+│   ├── error/          # Global exception and failure handling
+│   ├── network/        # Networking layer (Dio, Interceptors, Network Info)
+│   ├── routing/        # App routing (GoRouter)
+│   ├── storage/        # Local storage (Secure Storage, Token Repo, Hive)
+│   └── theme/          # App-wide theme and styling (Material 3)
+├── features/           # Feature-driven modules (Clean Architecture)
+│   ├── auth/           # Authentication feature reference
+│   │   ├── data/       # Models, Repositories Impl, Data Sources
+│   │   ├── domain/     # Entities, Repositories Interfaces, Use Cases
+│   │   └── presentation/# BLoCs, Screens, Bindings
+│   └── dashboard/      # Main dashboard feature
+├── shared/             # Reusable UI components and extensions
+│   ├── components/     # Atomic UI widgets (Buttons, TextFields, Loaders)
+│   ├── dialogs/        # Global dialogs and overlays
+│   └── extensions/     # Common Dart/Flutter extensions
+├── l10n/               # Generated localization files
+└── main.dart           # Unified entry point & bootstrapping
+```
+
+### �🗺️ Dependency Graph
 ```mermaid
 graph TD
     UI[Presentation Layer: Screens/Widgets] --> BLoC[BLoC/Cubit]
