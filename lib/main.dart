@@ -1,4 +1,5 @@
 import 'package:dhira_flutter_template/core/constants/flavor_config.dart';
+import 'package:dhira_flutter_template/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -55,11 +56,12 @@ class DhiraApp extends StatelessWidget {
         themeMode: ThemeMode.system,
         routerConfig: AppRouter.router,
         localizationsDelegates: const [
+          AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        supportedLocales: const [Locale('en', '')],
+        supportedLocales: AppLocalizations.supportedLocales,
       ),
     );
   }

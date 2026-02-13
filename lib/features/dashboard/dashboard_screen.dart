@@ -4,14 +4,17 @@ import 'package:dhira_flutter_template/features/auth/presentation/bloc/auth_bloc
 import 'package:dhira_flutter_template/features/auth/presentation/bloc/auth_event.dart';
 import 'package:dhira_flutter_template/features/auth/presentation/bloc/auth_state.dart';
 
+import 'package:dhira_flutter_template/l10n/app_localizations.dart';
+
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        title: Text(l10n.dashboard),
         actions: [
           IconButton(
             onPressed: () {
@@ -35,7 +38,7 @@ class DashboardScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Welcome, ${user.name ?? 'User'}!',
+                    l10n.welcomeUser(user.name ?? 'User'),
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -44,7 +47,7 @@ class DashboardScreen extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(user.email, style: const TextStyle(color: Colors.grey)),
                   const SizedBox(height: 32),
-                  const Text('This is your enterprise template dashboard.'),
+                  Text(l10n.dashboardSubtitle),
                 ],
               ),
             ),

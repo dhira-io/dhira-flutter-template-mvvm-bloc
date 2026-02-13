@@ -9,10 +9,25 @@
   "password": "Password",
   "forgotPassword": "Forgot Password?",
   "donHaveAccount": "Don't have an account?",
+  "dontHaveAccountRegister": "Don't have an account? Register",
   "alreadyHaveAccount": "Already have an account?",
-  "invalidEmail": "Please enter a valid email",
-  "invalidPassword": "Password must be at least 6 characters",
-  "fieldRequired": "This field is required",
+  "alreadyHaveAccountLogin": "Already have an account? Login",
+  "welcomeBack": "Welcome Back",
+  "createAccount": "Create Account",
+  "fullName": "Full Name",
+  "fieldRequired": "Required",
+  "invalidEmail": "Invalid Email",
+  "passwordTooShort": "Password too short",
+  "dashboard": "Dashboard",
+  "welcomeUser": "Welcome, {name}!",
+  "@welcomeUser": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dashboardSubtitle": "This is your enterprise template dashboard.",
   "loginSuccess": "Login Successful",
   "registerSuccess": "Registration Successful",
   "somethingWentWrong": "Something went wrong. Please try again."

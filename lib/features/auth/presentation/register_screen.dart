@@ -9,6 +9,8 @@ import 'bloc/auth_bloc.dart';
 import 'bloc/auth_event.dart';
 import 'bloc/auth_state.dart';
 
+import 'package:dhira_flutter_template/l10n/app_localizations.dart';
+
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -44,6 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -68,9 +71,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Text(
-                      'Create Account',
-                      style: TextStyle(
+                    Text(
+                      l10n.createAccount,
+                      style: const TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
                       ),
@@ -79,40 +82,46 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(height: 48),
                     AppTextField(
                       controller: _nameController,
-                      labelText: 'Full Name',
+                      labelText: l10n.fullName,
                       prefixIcon: const Icon(Icons.person_outline),
                       validator: (value) {
-                        if (value == null || value.isEmpty) return 'Required';
+                        if (value == null || value.isEmpty) {
+                          return l10n.fieldRequired;
+                        }
                         return null;
                       },
                     ),
                     const SizedBox(height: 16),
                     AppTextField(
                       controller: _emailController,
-                      labelText: 'Email',
+                      labelText: l10n.email,
                       prefixIcon: const Icon(Icons.email_outlined),
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
-                        if (value == null || value.isEmpty) return 'Required';
-                        if (!value.contains('@')) return 'Invalid Email';
+                        if (value == null || value.isEmpty) {
+                          return l10n.fieldRequired;
+                        }
+                        if (!value.contains('@')) return l10n.invalidEmail;
                         return null;
                       },
                     ),
                     const SizedBox(height: 16),
                     AppTextField(
                       controller: _passwordController,
-                      labelText: 'Password',
+                      labelText: l10n.password,
                       prefixIcon: const Icon(Icons.lock_outline),
                       obscureText: true,
                       validator: (value) {
-                        if (value == null || value.isEmpty) return 'Required';
-                        if (value.length < 6) return 'Password too short';
+                        if (value == null || value.isEmpty) {
+                          return l10n.fieldRequired;
+                        }
+                        if (value.length < 6) return l10n.passwordTooShort;
                         return null;
                       },
                     ),
                     const SizedBox(height: 24),
                     AppButton(
-                      text: 'Register',
+                      text: l10n.register,
                       isLoading: state.maybeWhen(
                         loading: () => true,
                         orElse: () => false,

@@ -9,6 +9,8 @@ import 'bloc/auth_bloc.dart';
 import 'bloc/auth_event.dart';
 import 'bloc/auth_state.dart';
 
+import 'package:dhira_flutter_template/l10n/app_localizations.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -41,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
@@ -61,9 +64,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Text(
-                      'Welcome Back',
-                      style: TextStyle(
+                    Text(
+                      l10n.welcomeBack,
+                      style: const TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
                       ),
@@ -72,29 +75,33 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 48),
                     AppTextField(
                       controller: _emailController,
-                      labelText: 'Email',
+                      labelText: l10n.email,
                       prefixIcon: const Icon(Icons.email_outlined),
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
-                        if (value == null || value.isEmpty) return 'Required';
-                        if (!value.contains('@')) return 'Invalid Email';
+                        if (value == null || value.isEmpty) {
+                          return l10n.fieldRequired;
+                        }
+                        if (!value.contains('@')) return l10n.invalidEmail;
                         return null;
                       },
                     ),
                     const SizedBox(height: 16),
                     AppTextField(
                       controller: _passwordController,
-                      labelText: 'Password',
+                      labelText: l10n.password,
                       prefixIcon: const Icon(Icons.lock_outline),
                       obscureText: true,
                       validator: (value) {
-                        if (value == null || value.isEmpty) return 'Required';
+                        if (value == null || value.isEmpty) {
+                          return l10n.fieldRequired;
+                        }
                         return null;
                       },
                     ),
                     const SizedBox(height: 24),
                     AppButton(
-                      text: 'Login',
+                      text: l10n.login,
                       isLoading: state.maybeWhen(
                         loading: () => true,
                         orElse: () => false,
@@ -105,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     TextButton(
                       onPressed: () =>
                           context.push(RouteConstants.registerPath),
-                      child: const Text("Don't have an account? Register"),
+                      child: Text(l10n.dontHaveAccountRegister),
                     ),
                   ],
                 ),
