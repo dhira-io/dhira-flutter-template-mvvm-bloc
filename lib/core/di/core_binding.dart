@@ -5,6 +5,8 @@ import '../network/dio_client.dart';
 import '../network/network_info.dart';
 import '../storage/token_repository.dart';
 
+import '../constants/flavor_config.dart';
+
 class CoreBinding extends Bindings {
   @override
   void dependencies() {
@@ -22,9 +24,7 @@ class CoreBinding extends Bindings {
 
     // Dio Client
     Get.lazyPut<DioClient>(
-      () => DioClient(
-        baseUrl: 'https://api.dummyauth.com', // Replace with actual base URL
-      ),
+      () => DioClient(baseUrl: FlavorConfig.instance.baseUrl),
     );
   }
 }

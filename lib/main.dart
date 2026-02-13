@@ -1,3 +1,4 @@
+import 'package:dhira_flutter_template/core/constants/flavor_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,7 +12,19 @@ import 'features/auth/presentation/bloc/auth_bloc.dart';
 import 'features/auth/presentation/bloc/auth_event.dart';
 
 void main() async {
+  await bootstrap();
+}
+
+Future<void> bootstrap([AppConfig? config]) async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Flavor
+  if (config != null) {
+    FlavorConfig.initialize(config);
+  } else {
+    // Detect from --dart-define
+    FlavorConfig.instance;
+  }
 
   // Initialize Hive
   await HiveService.init();
