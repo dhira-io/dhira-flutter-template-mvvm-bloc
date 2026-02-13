@@ -20,7 +20,7 @@ Future<void> bootstrap([AppConfig? config]) async {
 
   // Initialize Flavor
   if (config != null) {
-    FlavorConfig.initialize(config);
+    FlavorConfig.instance = config;
   } else {
     // Detect from --dart-define
     FlavorConfig.instance;
