@@ -74,7 +74,23 @@ You can run the app for specific environments using the custom entry points:
 *Alternatively, use `--dart-define=FLAVOR=dev` if running from `main.dart`.*
 
 ### 📦 Building the App
-... (existing commands)
+#### Android (APK/AppBundle)
+```bash
+# Build Dev APK
+flutter build apk --flavor dev -t lib/main_dev.dart
+
+# Build Prod AppBundle
+flutter build appbundle --flavor prod -t lib/main_prod.dart
+```
+
+#### iOS (IPA)
+```bash
+# Build Dev IPA
+flutter build ipa --flavor dev -t lib/main_dev.dart
+
+# Build Prod IPA
+flutter build ipa --flavor prod -t lib/main_prod.dart
+```
 
 ---
 
