@@ -38,7 +38,6 @@ Future<void> bootstrap([AppConfig? config]) async {
   runApp(const DhiraApp());
 }
 
-
 class DhiraApp extends StatelessWidget {
   const DhiraApp({super.key});
 
