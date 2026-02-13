@@ -74,24 +74,29 @@ You can run the app for specific environments using the custom entry points:
 *Alternatively, use `--dart-define=FLAVOR=dev` if running from `main.dart`.*
 
 ### 📦 Building the App
+... (existing commands)
 
-#### Android (APK/AppBundle)
-```bash
-# Build Dev APK
-flutter build apk --flavor dev -t lib/main_dev.dart
+---
 
-# Build Prod AppBundle
-flutter build appbundle --flavor prod -t lib/main_prod.dart
-```
+## 🛠️ Maintenance & Code Generation
 
-#### iOS (IPA)
-```bash
-# Build Dev IPA
-flutter build ipa --flavor dev -t lib/main_dev.dart
+A helper script is provided in `scripts/gen.sh` to handle common tasks like cleaning, localization, and file generation.
 
-# Build Prod IPA
-flutter build ipa --flavor prod -t lib/main_prod.dart
-```
+### Using the Automation Script
+Make sure the script is executable: `chmod +x scripts/gen.sh`
+
+- **Clean & Get**: `./scripts/gen.sh clean`
+- **Generate L10n**: `./scripts/gen.sh l10n`
+- **Build Files (Freezed/JSON)**: `./scripts/gen.sh build`
+- **Watch Mode**: `./scripts/gen.sh watch`
+- **Full Refresh (All the above)**: `./scripts/gen.sh all`
+
+### Manual Commands
+If you prefer running commands manually:
+
+- **Generate Localization**: `flutter gen-l10n`
+- **Build Runner**: `flutter pub run build_runner build --delete-conflicting-outputs`
+- **Clean Project**: `flutter clean && flutter pub get`
 
 ---
 
