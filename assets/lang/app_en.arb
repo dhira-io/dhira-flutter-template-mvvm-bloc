@@ -1,0 +1,19 @@
+{
+  "appTitle": "Dhira Flutter Template",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "login": "Login",
+  "register": "Register",
+  "email": "Email",
+  "password": "Password",
+  "forgotPassword": "Forgot Password?",
+  "donHaveAccount": "Don't have an account?",
+  "alreadyHaveAccount": "Already have an account?",
+  "invalidEmail": "Please enter a valid email",
+  "invalidPassword": "Password must be at least 6 characters",
+  "fieldRequired": "This field is required",
+  "loginSuccess": "Login Successful",
+  "registerSuccess": "Registration Successful",
+  "somethingWentWrong": "Something went wrong. Please try again."
+}
