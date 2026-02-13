@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/routing/route_constants.dart';
+import '../../../../core/utils/snackbar_utils.dart';
 import '../../../../shared/components/app_button.dart';
 import '../../../../shared/components/app_text_field.dart';
-import '../../../../shared/dialogs/app_dialogs.dart';
 import 'bloc/auth_bloc.dart';
 import 'bloc/auth_event.dart';
 import 'bloc/auth_state.dart';
@@ -23,12 +23,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
 
   @override
   void dispose() {
     _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -56,13 +61,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           state.maybeWhen(
-            authenticated: (_) => context.go(RouteConstants.dashboardPath),
-            error: (message) =>
-                AppDialogs.showErrorDialog(context, message: message),
+            authenticated: (_) {
+              SnackbarUtils.showSuccess(context, 'Registration Successful!');
+              context.go(RouteConstants.dashboardPath);
+            },
+            error: (message) => SnackbarUtils.showError(context, message),
             orElse: () {},
           );
         },
         builder: (context, state) {
+          final isLoading = state.maybeWhen(
+            loading: () => true,
+            orElse: () => false,
+          );
+
           return SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(24.0),
@@ -101,7 +113,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         if (value == null || value.isEmpty) {
                           return l10n.fieldRequired;
                         }
-                        if (!value.contains('@')) return l10n.invalidEmail;
+                        if (!RegExp(
+                          r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                        ).hasMatch(value)) {
+                          return l10n.invalidEmail;
+                        }
                         return null;
                       },
                     ),
@@ -110,7 +126,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       controller: _passwordController,
                       labelText: l10n.password,
                       prefixIcon: const Icon(Icons.lock_outline),
-                      obscureText: true,
+                      obscureText: _obscurePassword,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscurePassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: Colors.grey,
+                        ),
+                        onPressed: () => setState(
+                          () => _obscurePassword = !_obscurePassword,
+                        ),
+                      ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return l10n.fieldRequired;
@@ -119,13 +146,38 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         return null;
                       },
                     ),
+                    const SizedBox(height: 16),
+                    AppTextField(
+                      controller: _confirmPasswordController,
+                      labelText: 'Confirm Password',
+                      prefixIcon: const Icon(Icons.lock_outline),
+                      obscureText: _obscureConfirmPassword,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureConfirmPassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: Colors.grey,
+                        ),
+                        onPressed: () => setState(
+                          () => _obscureConfirmPassword =
+                              !_obscureConfirmPassword,
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return l10n.fieldRequired;
+                        }
+                        if (value != _passwordController.text) {
+                          return 'Passwords do not match';
+                        }
+                        return null;
+                      },
+                    ),
                     const SizedBox(height: 24),
                     AppButton(
                       text: l10n.register,
-                      isLoading: state.maybeWhen(
-                        loading: () => true,
-                        orElse: () => false,
-                      ),
+                      isLoading: isLoading,
                       onPressed: _onRegister,
                     ),
                   ],

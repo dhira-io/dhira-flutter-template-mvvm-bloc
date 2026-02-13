@@ -12,7 +12,7 @@ class AppConfig {
   });
 
   factory AppConfig.dev() => AppConfig(
-    baseUrl: 'https://dev-api.dhira.io/api/v1',
+    baseUrl: 'https://reqres.in/api',
     environmentName: 'Development',
     flavor: AppFlavor.dev,
   );

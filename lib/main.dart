@@ -11,6 +11,7 @@ import 'core/storage/hive_service.dart';
 import 'features/auth/presentation/auth_binding.dart';
 import 'features/auth/presentation/bloc/auth_bloc.dart';
 import 'features/auth/presentation/bloc/auth_event.dart';
+import 'core/network/session_watcher.dart';
 
 void main() async {
   await bootstrap();
@@ -37,6 +38,7 @@ Future<void> bootstrap([AppConfig? config]) async {
   runApp(const DhiraApp());
 }
 
+
 class DhiraApp extends StatelessWidget {
   const DhiraApp({super.key});
 
@@ -48,20 +50,22 @@ class DhiraApp extends StatelessWidget {
           create: (context) => Get.find<AuthBloc>()..add(AuthCheckRequested()),
         ),
       ],
-      child: MaterialApp.router(
-        title: 'Dhira Flutter Template',
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: ThemeMode.system,
-        routerConfig: AppRouter.router,
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: AppLocalizations.supportedLocales,
+      child: SessionWatcher(
+        child: MaterialApp.router(
+          title: 'Dhira Flutter Template',
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: ThemeMode.system,
+          routerConfig: AppRouter.router,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+        ),
       ),
     );
   }

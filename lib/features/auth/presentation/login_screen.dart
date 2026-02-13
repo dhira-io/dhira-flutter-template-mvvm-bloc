@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/routing/route_constants.dart';
+import '../../../../core/utils/snackbar_utils.dart';
 import '../../../../shared/components/app_button.dart';
 import '../../../../shared/components/app_text_field.dart';
-import '../../../../shared/dialogs/app_dialogs.dart';
 import 'bloc/auth_bloc.dart';
 import 'bloc/auth_event.dart';
 import 'bloc/auth_state.dart';
@@ -22,6 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _obscurePassword = true;
 
   @override
   void dispose() {
@@ -48,13 +49,20 @@ class _LoginScreenState extends State<LoginScreen> {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           state.maybeWhen(
-            authenticated: (_) => context.go(RouteConstants.dashboardPath),
-            error: (message) =>
-                AppDialogs.showErrorDialog(context, message: message),
+            authenticated: (_) {
+              SnackbarUtils.showSuccess(context, 'Login Successful!');
+              context.go(RouteConstants.dashboardPath);
+            },
+            error: (message) => SnackbarUtils.showError(context, message),
             orElse: () {},
           );
         },
         builder: (context, state) {
+          final isLoading = state.maybeWhen(
+            loading: () => true,
+            orElse: () => false,
+          );
+
           return SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(24.0),
@@ -82,7 +90,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (value == null || value.isEmpty) {
                           return l10n.fieldRequired;
                         }
-                        if (!value.contains('@')) return l10n.invalidEmail;
+                        if (!RegExp(
+                          r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                        ).hasMatch(value)) {
+                          return l10n.invalidEmail;
+                        }
                         return null;
                       },
                     ),
@@ -91,10 +103,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: _passwordController,
                       labelText: l10n.password,
                       prefixIcon: const Icon(Icons.lock_outline),
-                      obscureText: true,
+                      obscureText: _obscurePassword,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscurePassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: Colors.grey,
+                        ),
+                        onPressed: () => setState(
+                          () => _obscurePassword = !_obscurePassword,
+                        ),
+                      ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return l10n.fieldRequired;
+                        }
+                        if (value.length < 6) {
+                          return 'Password must be at least 6 characters';
                         }
                         return null;
                       },
@@ -102,10 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 24),
                     AppButton(
                       text: l10n.login,
-                      isLoading: state.maybeWhen(
-                        loading: () => true,
-                        orElse: () => false,
-                      ),
+                      isLoading: isLoading,
                       onPressed: _onLogin,
                     ),
                     const SizedBox(height: 16),

@@ -1,6 +1,6 @@
 import '../../../core/network/dio_client.dart';
 import 'auth_model.dart';
-import '../../../core/error/exceptions.dart';
+import 'models/auth_requests_responses.dart';
 
 abstract class AuthRemoteDataSource {
   Future<AuthModel> login({required String email, required String password});
@@ -13,26 +13,26 @@ abstract class AuthRemoteDataSource {
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
-  AuthRemoteDataSourceImpl(DioClient _);
+  final DioClient _dioClient;
+
+  AuthRemoteDataSourceImpl(this._dioClient);
 
   @override
   Future<AuthModel> login({
     required String email,
     required String password,
   }) async {
-    // Simulate API call
-    await Future.delayed(const Duration(seconds: 2));
+    final response = await _dioClient.post(
+      '/login',
+      data: {'email': email, 'password': password},
+    );
 
-    if (email == 'user@dhira.io' && password == 'password123') {
-      return const AuthModel(
-        id: '1',
-        email: 'user@dhira.io',
-        name: 'Dhira User',
-        token: 'dummy_token_123',
-      );
-    } else {
-      throw ServerException(message: 'Invalid credentials', code: 401);
-    }
+    final loginResponse = LoginResponse.fromJson(response.data);
+    return AuthModel(
+      id: '0', // ReqRes doesn't return ID on login
+      email: email,
+      token: loginResponse.token,
+    );
   }
 
   @override
@@ -41,14 +41,17 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String email,
     required String password,
   }) async {
-    // Simulate API call
-    await Future.delayed(const Duration(seconds: 2));
+    final response = await _dioClient.post(
+      '/register',
+      data: {'email': email, 'password': password},
+    );
 
+    final registerResponse = RegisterResponse.fromJson(response.data);
     return AuthModel(
-      id: '2',
+      id: registerResponse.id.toString(),
       email: email,
       name: name,
-      token: 'dummy_token_456',
+      token: registerResponse.token,
     );
   }
 }

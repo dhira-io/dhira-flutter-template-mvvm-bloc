@@ -4,12 +4,18 @@ import '../error/exceptions.dart';
 import '../storage/token_repository.dart';
 import 'interceptors/auth_interceptor.dart';
 import 'interceptors/logging_interceptor.dart';
+import 'session_manager.dart';
 
 class DioClient {
   final String baseUrl;
+  final SessionManager? sessionManager;
   late Dio _dio;
 
-  DioClient({required this.baseUrl, List<Interceptor>? interceptors}) {
+  DioClient({
+    required this.baseUrl,
+    this.sessionManager,
+    List<Interceptor>? interceptors,
+  }) {
     _dio = Dio(
       BaseOptions(
         baseUrl: baseUrl,
@@ -84,10 +90,21 @@ class DioClient {
 
     if (e.response != null) {
       if (e.response?.statusCode == 401) {
+        sessionManager?.triggerSessionExpired();
         return UnauthorizedException(message: 'Unauthorized');
       }
+
+      String? errorMessage;
+      final data = e.response?.data;
+
+      if (data is Map<String, dynamic>) {
+        errorMessage = data['message'] ?? data['error'] ?? data['errorMessage'];
+      } else if (data is String && data.isNotEmpty) {
+        errorMessage = data;
+      }
+
       return ServerException(
-        message: e.response?.data['message'] ?? 'Server Error',
+        message: errorMessage ?? 'Something went wrong',
         code: e.response?.statusCode,
       );
     }
