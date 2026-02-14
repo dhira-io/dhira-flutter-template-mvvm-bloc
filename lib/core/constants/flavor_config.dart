@@ -12,7 +12,7 @@ class AppConfig {
   });
 
   factory AppConfig.dev() => AppConfig(
-    baseUrl: 'https://reqres.in/api',
+    baseUrl: 'https://dummyjson.com',
     environmentName: 'Development',
     flavor: AppFlavor.dev,
   );

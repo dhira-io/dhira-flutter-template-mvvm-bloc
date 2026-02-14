@@ -29,7 +29,7 @@ class DioClient {
     );
 
     _dio.interceptors.addAll([
-      AuthInterceptor(get_di.Get.find<TokenRepository>()),
+      AuthInterceptor(get_di.Get.find<SecureStorageRepository>()),
       LoggingInterceptor(),
       if (interceptors != null) ...interceptors,
     ]);

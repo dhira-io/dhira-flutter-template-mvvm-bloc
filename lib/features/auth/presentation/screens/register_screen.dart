@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/routing/route_constants.dart';
-import '../../../../core/utils/snackbar_utils.dart';
-import '../../../../shared/components/app_button.dart';
-import '../../../../shared/components/app_text_field.dart';
-import 'bloc/auth_bloc.dart';
-import 'bloc/auth_event.dart';
-import 'bloc/auth_state.dart';
+import '../../../../../core/routing/route_constants.dart';
+import '../../../../../core/utils/snackbar_utils.dart';
+import '../../../../../shared/components/app_button.dart';
+import '../../../../../shared/components/app_text_field.dart';
+import '../bloc/auth_bloc.dart';
+import '../bloc/auth_event.dart';
+import '../bloc/auth_state.dart';
 
 import 'package:dhira_flutter_template/l10n/app_localizations.dart';
 

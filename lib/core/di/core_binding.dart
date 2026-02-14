@@ -19,8 +19,8 @@ class CoreBinding extends Bindings {
 
     // Security & Storage
     Get.lazyPut<FlutterSecureStorage>(() => const FlutterSecureStorage());
-    Get.lazyPut<TokenRepository>(
-      () => TokenRepositoryImpl(Get.find<FlutterSecureStorage>()),
+    Get.lazyPut<SecureStorageRepository>(
+      () => SecureStorageRepositoryImpl(Get.find<FlutterSecureStorage>()),
     );
 
     // Session Management

@@ -2,11 +2,11 @@ import 'package:get/get.dart';
 import 'package:dhira_flutter_template/core/network/dio_client.dart';
 import 'package:dhira_flutter_template/core/network/network_info.dart';
 import 'package:dhira_flutter_template/core/storage/token_repository.dart';
-import 'package:dhira_flutter_template/features/auth/data/auth_remote_data_source.dart';
-import 'package:dhira_flutter_template/features/auth/data/auth_repository_impl.dart';
-import 'package:dhira_flutter_template/features/auth/domain/auth_repository.dart';
-import 'package:dhira_flutter_template/features/auth/domain/login_usecase.dart';
-import 'package:dhira_flutter_template/features/auth/domain/register_usecase.dart';
+import 'package:dhira_flutter_template/features/auth/data/datasources/auth_remote_data_source.dart';
+import 'package:dhira_flutter_template/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:dhira_flutter_template/features/auth/domain/repositories/auth_repository.dart';
+import 'package:dhira_flutter_template/features/auth/domain/usecases/login_usecase.dart';
+import 'package:dhira_flutter_template/features/auth/domain/usecases/register_usecase.dart';
 import 'package:dhira_flutter_template/features/auth/presentation/bloc/auth_bloc.dart';
 
 class AuthBinding extends Bindings {
@@ -21,7 +21,7 @@ class AuthBinding extends Bindings {
     Get.lazyPut<AuthRepository>(
       () => AuthRepositoryImpl(
         remoteDataSource: Get.find<AuthRemoteDataSource>(),
-        tokenRepository: Get.find<TokenRepository>(),
+        secureStorageRepository: Get.find<SecureStorageRepository>(),
         networkInfo: Get.find<NetworkInfo>(),
       ),
     );

@@ -20,10 +20,16 @@ AuthModel _$AuthModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AuthModel {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
+  String? get firstName => throw _privateConstructorUsedError;
+  String? get lastName => throw _privateConstructorUsedError;
+  String? get gender => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
+  @JsonKey(name: 'accessToken')
   String? get token => throw _privateConstructorUsedError;
+  String? get refreshToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +42,16 @@ abstract class $AuthModelCopyWith<$Res> {
   factory $AuthModelCopyWith(AuthModel value, $Res Function(AuthModel) then) =
       _$AuthModelCopyWithImpl<$Res, AuthModel>;
   @useResult
-  $Res call({String id, String email, String? name, String? token});
+  $Res call(
+      {int id,
+      String email,
+      String? username,
+      String? firstName,
+      String? lastName,
+      String? gender,
+      String? image,
+      @JsonKey(name: 'accessToken') String? token,
+      String? refreshToken});
 }
 
 /// @nodoc
@@ -54,25 +69,50 @@ class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
   $Res call({
     Object? id = null,
     Object? email = null,
-    Object? name = freezed,
+    Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? gender = freezed,
+    Object? image = freezed,
     Object? token = freezed,
+    Object? refreshToken = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String?,
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      refreshToken: freezed == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -86,7 +126,16 @@ abstract class _$$AuthModelImplCopyWith<$Res>
       __$$AuthModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String email, String? name, String? token});
+  $Res call(
+      {int id,
+      String email,
+      String? username,
+      String? firstName,
+      String? lastName,
+      String? gender,
+      String? image,
+      @JsonKey(name: 'accessToken') String? token,
+      String? refreshToken});
 }
 
 /// @nodoc
@@ -102,25 +151,50 @@ class __$$AuthModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? email = null,
-    Object? name = freezed,
+    Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? gender = freezed,
+    Object? image = freezed,
     Object? token = freezed,
+    Object? refreshToken = freezed,
   }) {
     return _then(_$AuthModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String?,
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      refreshToken: freezed == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -130,24 +204,43 @@ class __$$AuthModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AuthModelImpl extends _AuthModel {
   const _$AuthModelImpl(
-      {required this.id, required this.email, this.name, this.token})
+      {required this.id,
+      required this.email,
+      this.username,
+      this.firstName,
+      this.lastName,
+      this.gender,
+      this.image,
+      @JsonKey(name: 'accessToken') this.token,
+      this.refreshToken})
       : super._();
 
   factory _$AuthModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthModelImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String email;
   @override
-  final String? name;
+  final String? username;
   @override
+  final String? firstName;
+  @override
+  final String? lastName;
+  @override
+  final String? gender;
+  @override
+  final String? image;
+  @override
+  @JsonKey(name: 'accessToken')
   final String? token;
+  @override
+  final String? refreshToken;
 
   @override
   String toString() {
-    return 'AuthModel(id: $id, email: $email, name: $name, token: $token)';
+    return 'AuthModel(id: $id, email: $email, username: $username, firstName: $firstName, lastName: $lastName, gender: $gender, image: $image, token: $token, refreshToken: $refreshToken)';
   }
 
   @override
@@ -157,13 +250,23 @@ class _$AuthModelImpl extends _AuthModel {
             other is _$AuthModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, email, name, token);
+  int get hashCode => Object.hash(runtimeType, id, email, username, firstName,
+      lastName, gender, image, token, refreshToken);
 
   @JsonKey(ignore: true)
   @override
@@ -181,23 +284,39 @@ class _$AuthModelImpl extends _AuthModel {
 
 abstract class _AuthModel extends AuthModel {
   const factory _AuthModel(
-      {required final String id,
+      {required final int id,
       required final String email,
-      final String? name,
-      final String? token}) = _$AuthModelImpl;
+      final String? username,
+      final String? firstName,
+      final String? lastName,
+      final String? gender,
+      final String? image,
+      @JsonKey(name: 'accessToken') final String? token,
+      final String? refreshToken}) = _$AuthModelImpl;
   const _AuthModel._() : super._();
 
   factory _AuthModel.fromJson(Map<String, dynamic> json) =
       _$AuthModelImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get email;
   @override
-  String? get name;
+  String? get username;
   @override
+  String? get firstName;
+  @override
+  String? get lastName;
+  @override
+  String? get gender;
+  @override
+  String? get image;
+  @override
+  @JsonKey(name: 'accessToken')
   String? get token;
+  @override
+  String? get refreshToken;
   @override
   @JsonKey(ignore: true)
   _$$AuthModelImplCopyWith<_$AuthModelImpl> get copyWith =>

@@ -1,38 +1,43 @@
 import 'package:dartz/dartz.dart';
-import '../../../core/error/exceptions.dart';
-import '../../../core/error/failures.dart';
-import '../../../core/network/network_info.dart';
-import '../../../core/storage/token_repository.dart';
-import '../domain/auth_repository.dart';
-import '../domain/user_entity.dart';
-import 'auth_remote_data_source.dart';
+import '../../../../core/error/exceptions.dart';
+import '../../../../core/error/failures.dart';
+import '../../../../core/network/network_info.dart';
+import '../../../../core/storage/token_repository.dart';
+import '../../domain/repositories/auth_repository.dart';
+import '../../domain/entities/user_entity.dart';
+import '../datasources/auth_remote_data_source.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
-  final TokenRepository tokenRepository;
+  final SecureStorageRepository secureStorageRepository;
   final NetworkInfo networkInfo;
 
   AuthRepositoryImpl({
     required this.remoteDataSource,
-    required this.tokenRepository,
+    required this.secureStorageRepository,
     required this.networkInfo,
   });
 
   @override
   Future<Either<Failure, UserEntity>> login({
-    required String email,
+    required String username,
     required String password,
   }) async {
     if (await networkInfo.isConnected) {
       try {
         final authModel = await remoteDataSource.login(
-          email: email,
+          username: username,
           password: password,
         );
 
-        // Save token
+        // Save tokens
         if (authModel.token != null) {
-          await tokenRepository.saveToken(authModel.token!);
+          await secureStorageRepository.saveAccessToken(authModel.token!);
+        }
+        if (authModel.refreshToken != null) {
+          await secureStorageRepository.saveRefreshToken(
+            authModel.refreshToken!,
+          );
         }
 
         return Right(authModel.toEntity());
@@ -62,9 +67,14 @@ class AuthRepositoryImpl implements AuthRepository {
           password: password,
         );
 
-        // Save token
+        // Save tokens
         if (authModel.token != null) {
-          await tokenRepository.saveToken(authModel.token!);
+          await secureStorageRepository.saveAccessToken(authModel.token!);
+        }
+        if (authModel.refreshToken != null) {
+          await secureStorageRepository.saveRefreshToken(
+            authModel.refreshToken!,
+          );
         }
 
         return Right(authModel.toEntity());
@@ -81,7 +91,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, void>> logout() async {
     try {
-      await tokenRepository.deleteToken();
+      await secureStorageRepository.deleteAuthData();
       return const Right(null);
     } catch (e) {
       return Left(Failure.unknown(message: e.toString()));
@@ -90,11 +100,16 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, UserEntity?>> getCurrentUser() async {
-    // For demo purposes, we can check if token exists
-    final token = await tokenRepository.getToken();
+    final token = await secureStorageRepository.getAccessToken();
     if (token != null) {
       return const Right(
-        UserEntity(id: '1', email: 'user@dhira.io', name: 'Dhira User'),
+        UserEntity(
+          id: '1',
+          email: 'user@dhira.io',
+          name: 'Dhira User',
+          token: 'dummy',
+          refreshToken: 'dummy',
+        ),
       );
     }
     return const Right(null);

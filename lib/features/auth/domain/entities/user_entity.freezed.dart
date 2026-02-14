@@ -18,8 +18,11 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UserEntity {
   String get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
+  String? get refreshToken => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserEntityCopyWith<UserEntity> get copyWith =>
@@ -32,7 +35,14 @@ abstract class $UserEntityCopyWith<$Res> {
           UserEntity value, $Res Function(UserEntity) then) =
       _$UserEntityCopyWithImpl<$Res, UserEntity>;
   @useResult
-  $Res call({String id, String email, String? name, String? token});
+  $Res call(
+      {String id,
+      String email,
+      String? username,
+      String? name,
+      String? image,
+      String? token,
+      String? refreshToken});
 }
 
 /// @nodoc
@@ -50,8 +60,11 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
   $Res call({
     Object? id = null,
     Object? email = null,
+    Object? username = freezed,
     Object? name = freezed,
+    Object? image = freezed,
     Object? token = freezed,
+    Object? refreshToken = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -62,13 +75,25 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      refreshToken: freezed == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -82,7 +107,14 @@ abstract class _$$UserEntityImplCopyWith<$Res>
       __$$UserEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String email, String? name, String? token});
+  $Res call(
+      {String id,
+      String email,
+      String? username,
+      String? name,
+      String? image,
+      String? token,
+      String? refreshToken});
 }
 
 /// @nodoc
@@ -98,8 +130,11 @@ class __$$UserEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? email = null,
+    Object? username = freezed,
     Object? name = freezed,
+    Object? image = freezed,
     Object? token = freezed,
+    Object? refreshToken = freezed,
   }) {
     return _then(_$UserEntityImpl(
       id: null == id
@@ -110,13 +145,25 @@ class __$$UserEntityImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      refreshToken: freezed == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -126,20 +173,32 @@ class __$$UserEntityImplCopyWithImpl<$Res>
 
 class _$UserEntityImpl implements _UserEntity {
   const _$UserEntityImpl(
-      {required this.id, required this.email, this.name, this.token});
+      {required this.id,
+      required this.email,
+      this.username,
+      this.name,
+      this.image,
+      this.token,
+      this.refreshToken});
 
   @override
   final String id;
   @override
   final String email;
   @override
+  final String? username;
+  @override
   final String? name;
   @override
+  final String? image;
+  @override
   final String? token;
+  @override
+  final String? refreshToken;
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, email: $email, name: $name, token: $token)';
+    return 'UserEntity(id: $id, email: $email, username: $username, name: $name, image: $image, token: $token, refreshToken: $refreshToken)';
   }
 
   @override
@@ -149,12 +208,18 @@ class _$UserEntityImpl implements _UserEntity {
             other is _$UserEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, email, name, token);
+  int get hashCode => Object.hash(
+      runtimeType, id, email, username, name, image, token, refreshToken);
 
   @JsonKey(ignore: true)
   @override
@@ -167,17 +232,26 @@ abstract class _UserEntity implements UserEntity {
   const factory _UserEntity(
       {required final String id,
       required final String email,
+      final String? username,
       final String? name,
-      final String? token}) = _$UserEntityImpl;
+      final String? image,
+      final String? token,
+      final String? refreshToken}) = _$UserEntityImpl;
 
   @override
   String get id;
   @override
   String get email;
   @override
+  String? get username;
+  @override
   String? get name;
   @override
+  String? get image;
+  @override
   String? get token;
+  @override
+  String? get refreshToken;
   @override
   @JsonKey(ignore: true)
   _$$UserEntityImplCopyWith<_$UserEntityImpl> get copyWith =>

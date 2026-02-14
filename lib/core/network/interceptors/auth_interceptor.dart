@@ -4,16 +4,16 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../../storage/token_repository.dart';
 
 class AuthInterceptor extends Interceptor {
-  final TokenRepository _tokenRepository;
+  final SecureStorageRepository _storage;
 
-  AuthInterceptor(this._tokenRepository);
+  AuthInterceptor(this._storage);
 
   @override
   void onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final token = await _tokenRepository.getToken();
+    final token = await _storage.getAccessToken();
     final packageInfo = await PackageInfo.fromPlatform();
 
     options.headers.addAll({
