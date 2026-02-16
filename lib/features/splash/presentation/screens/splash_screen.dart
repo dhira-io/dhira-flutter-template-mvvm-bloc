@@ -16,12 +16,9 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) return;
-
       // Delay for 1 minute for flow mocking
       await Future.delayed(const Duration(seconds: 3));
-
       if (!mounted) return;
-
       final authBloc = context.read<AuthBloc>();
       // Trigger auth check if it's in initial state
       authBloc.state.maybeWhen(

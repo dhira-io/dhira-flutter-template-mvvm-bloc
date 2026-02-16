@@ -116,7 +116,41 @@ If you prefer running commands manually:
 
 ---
 
-## 🤖 Feature Generation Prompt (AI/Sigma)
+## 🤖 AI Prompting Guide
+
+Use these refined prompts with an AI assistant to quickly customize the template or add new features.
+
+### 🔄 Rename App & Package
+Use this prompt to completely rename the template to your own product name.
+
+**Refined Prompt**
+
+Rename the application to **“Todo App”** across both Android and iOS platforms. Ensure the following updates are completed:
+
+1. **App Display Name**
+   - Update the app name to **Todo App** for Android and iOS.
+   - Apply the change for all build flavors (e.g., dev, staging, prod) on both platforms.
+
+2. **Flutter Package Name**
+   - Update the package import path used in the Flutter app:
+     - from: `package:dhira_flutter_template`
+     - to: `package:todo_app`
+
+3. **Project Configuration**
+   - Update the package name/bundle identifier where required.
+   - Ensure Android and iOS flavor configurations reflect the new app name.
+   - Verify that the new naming is consistent across:
+     - Android manifests & Gradle configs
+     - iOS project settings & schemes
+     - Flutter configuration files
+
+4. **Validation**
+   - Confirm the app builds and runs correctly for all flavors.
+   - Ensure no references to the old name remain.
+
+---
+
+## 🛠️ Feature Generation Prompt (AI/Sigma)
 
 Use the following specialized prompt to generate new features that perfectly match this template's architecture. Use the `auth` module in `lib/features/auth` as the primary reference.
 
