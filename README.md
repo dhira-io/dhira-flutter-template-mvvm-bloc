@@ -116,7 +116,79 @@ If you prefer running commands manually:
 
 ---
 
-## 🤖 Feature Generation Prompt (AI/Sigma)
+## 🤖 AI Prompting Guide
+
+Use these refined prompts with an AI assistant to quickly customize the template or add new features.
+
+### 🔄 Rename App & Package
+Use this prompt to completely rename the template to your own product name.
+
+```text
+Rename the application to “Todo App” across both Android and iOS platforms. Ensure the following updates are completed:
+
+1. App Display Name
+   - Update the app name to Todo App for Android and iOS.
+   - Apply the change for all build flavors (e.g., dev, staging, prod) on both platforms.
+
+2. Flutter Package Name
+   - Update the package import path used in the Flutter app:
+     - from: package:dhira_flutter_template
+     - to: package:todo_app
+
+3. Project Configuration
+   - Update the package name/bundle identifier where required.
+   - Ensure Android and iOS flavor configurations reflect the new app name.
+   - Verify that the new naming is consistent across:
+     - Android manifests & Gradle configs
+     - iOS project settings & schemes
+     - Flutter configuration files
+
+4. Validation
+   - Confirm the app builds and runs correctly for all flavors.
+   - Ensure no references to the old name remain.
+```
+
+### ✨ Generate Dashboard Feature
+Use this prompt to create a full Todo management system following the template's architecture.
+
+```text
+Create a new Dashboard feature module for the app.
+
+### Architecture & Structure
+- Follow Clean Architecture + BLoC pattern.
+- Use lib/features/auth as the reference structure.
+- Keep proper separation of presentation, domain, and data layers.
+
+### Functionality
+1. Todo List Display
+   - Fetch and display todo tasks stored in the Hive database.
+   - Show tasks in a modern, clean home dashboard layout.
+   - Newly added tasks must appear at the top of the list.
+   - The list should update reactively when tasks are added, edited, or deleted.
+
+2. Add Todo
+   - Provide a Floating Action Button (FAB) at the bottom.
+   - On tap, open a dialog to add a task.
+
+3. Add/Edit/Delete Dialog
+   - Use a single reusable dialog for all CRUD operations.
+   - Fields: Title, Description, Created At (auto-generated).
+   - Support: Add new task, Edit existing task, Delete task.
+
+### Performance & Best Practices
+- Use Flutter best practices and maintain scalable, testable code.
+- Assign a ValueKey to each list item to prevent unnecessary rebuilds.
+- Ensure smooth UI updates and efficient state management.
+
+### UI/UX
+- Use a modern Material design layout.
+- Provide intuitive dialogs and smooth interactions.
+- Ensure responsive spacing and readability.
+```
+
+---
+
+## 🛠️ Feature Generation Prompt (AI/Sigma)
 
 Use the following specialized prompt to generate new features that perfectly match this template's architecture. Use the `auth` module in `lib/features/auth` as the primary reference.
 
