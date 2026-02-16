@@ -10,6 +10,7 @@ import '../bloc/auth_event.dart';
 import '../bloc/auth_state.dart';
 
 import 'package:todo_app/l10n/app_localizations.dart';
+import '../widgets/social_auth_buttons.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -180,6 +181,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       isLoading: isLoading,
                       onPressed: _onRegister,
                     ),
+                    const SizedBox(height: 24),
+                    const SocialAuthButtons(),
                   ],
                 ),
               ),

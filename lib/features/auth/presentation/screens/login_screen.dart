@@ -10,6 +10,7 @@ import '../bloc/auth_event.dart';
 import '../bloc/auth_state.dart';
 
 import 'package:todo_app/l10n/app_localizations.dart';
+import '../widgets/social_auth_buttons.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -132,6 +133,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           context.push(RouteConstants.registerPath),
                       child: Text(l10n.dontHaveAccountRegister),
                     ),
+                    const SizedBox(height: 24),
+                    const SocialAuthButtons(),
                   ],
                 ),
               ),
