@@ -10,7 +10,6 @@ import 'core/theme/app_theme.dart';
 import 'core/storage/hive_service.dart';
 import 'features/auth/presentation/auth_binding.dart';
 import 'features/auth/presentation/bloc/auth_bloc.dart';
-import 'features/auth/presentation/bloc/auth_event.dart';
 import 'core/network/session_watcher.dart';
 
 void main() async {
@@ -45,9 +44,7 @@ class DhiraApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AuthBloc>(
-          create: (context) => Get.find<AuthBloc>()..add(AuthCheckRequested()),
-        ),
+        BlocProvider<AuthBloc>(create: (context) => Get.find<AuthBloc>()),
       ],
       child: SessionWatcher(
         child: MaterialApp.router(

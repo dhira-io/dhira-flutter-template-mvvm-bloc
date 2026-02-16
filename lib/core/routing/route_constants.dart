@@ -1,4 +1,7 @@
 class RouteConstants {
+  static const String splashName = 'splash';
+  static const String splashPath = '/splash';
+
   static const String loginName = 'login';
   static const String loginPath = '/login';
 

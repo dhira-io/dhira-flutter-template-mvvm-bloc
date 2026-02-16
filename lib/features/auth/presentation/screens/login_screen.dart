@@ -52,8 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
           state.maybeWhen(
             authenticated: (_) {
               SnackbarUtils.showSuccess(context, 'Login Successful!');
-              context.go(RouteConstants.dashboardPath);
-            },
+              },
             error: (message) => SnackbarUtils.showError(context, message),
             orElse: () {},
           );
