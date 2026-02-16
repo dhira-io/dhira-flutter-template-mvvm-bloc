@@ -1,4 +1,4 @@
-package io.dhira.dhira_flutter_template
+package io.todo.todo_app
 
 import io.flutter.embedding.android.FlutterActivity
 

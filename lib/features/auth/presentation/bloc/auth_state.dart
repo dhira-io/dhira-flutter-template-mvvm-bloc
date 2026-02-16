@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:dhira_flutter_template/features/auth/domain/entities/user_entity.dart';
+import 'package:todo_app/features/auth/domain/entities/user_entity.dart';
 
 part 'auth_state.freezed.dart';
 

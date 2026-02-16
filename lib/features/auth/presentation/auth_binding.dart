@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
-import 'package:dhira_flutter_template/core/network/dio_client.dart';
-import 'package:dhira_flutter_template/core/network/network_info.dart';
-import 'package:dhira_flutter_template/core/storage/token_repository.dart';
-import 'package:dhira_flutter_template/features/auth/data/datasources/auth_remote_data_source.dart';
-import 'package:dhira_flutter_template/features/auth/data/repositories/auth_repository_impl.dart';
-import 'package:dhira_flutter_template/features/auth/domain/repositories/auth_repository.dart';
-import 'package:dhira_flutter_template/features/auth/domain/usecases/login_usecase.dart';
-import 'package:dhira_flutter_template/features/auth/domain/usecases/register_usecase.dart';
-import 'package:dhira_flutter_template/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:todo_app/core/network/dio_client.dart';
+import 'package:todo_app/core/network/network_info.dart';
+import 'package:todo_app/core/storage/token_repository.dart';
+import 'package:todo_app/features/auth/data/datasources/auth_remote_data_source.dart';
+import 'package:todo_app/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:todo_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:todo_app/features/auth/domain/usecases/login_usecase.dart';
+import 'package:todo_app/features/auth/domain/usecases/register_usecase.dart';
+import 'package:todo_app/features/auth/presentation/bloc/auth_bloc.dart';
 
 class AuthBinding extends Bindings {
   @override

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "io.dhira.dhira_flutter_template"
+    namespace = "io.todo.todo_app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "io.dhira.dhira_flutter_template"
+        applicationId = "io.todo.todo_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -36,17 +36,17 @@ android {
             dimension = "version"
             applicationIdSuffix = ".dev"
             versionNameSuffix = "-dev"
-            manifestPlaceholders["appName"] = "Dhira Dev"
+            manifestPlaceholders["appName"] = "Todo App Dev"
         }
         create("qa") {
             dimension = "version"
             applicationIdSuffix = ".qa"
             versionNameSuffix = "-qa"
-            manifestPlaceholders["appName"] = "Dhira QA"
+            manifestPlaceholders["appName"] = "Todo App QA"
         }
         create("prod") {
             dimension = "version"
-            manifestPlaceholders["appName"] = "Dhira"
+            manifestPlaceholders["appName"] = "Todo App"
         }
     }
 

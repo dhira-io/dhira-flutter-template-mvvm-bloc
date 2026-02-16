@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dhira_flutter_template/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:dhira_flutter_template/features/auth/presentation/bloc/auth_event.dart';
-import 'package:dhira_flutter_template/features/auth/presentation/bloc/auth_state.dart';
+import 'package:todo_app/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:todo_app/features/auth/presentation/bloc/auth_event.dart';
+import 'package:todo_app/features/auth/presentation/bloc/auth_state.dart';
 
-import 'package:dhira_flutter_template/l10n/app_localizations.dart';
+import 'package:todo_app/l10n/app_localizations.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});

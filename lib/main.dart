@@ -1,5 +1,5 @@
-import 'package:dhira_flutter_template/core/constants/flavor_config.dart';
-import 'package:dhira_flutter_template/l10n/app_localizations.dart';
+import 'package:todo_app/core/constants/flavor_config.dart';
+import 'package:todo_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -51,7 +51,7 @@ class DhiraApp extends StatelessWidget {
       ],
       child: SessionWatcher(
         child: MaterialApp.router(
-          title: 'Dhira Flutter Template',
+          title: 'Todo App(Android & IOS)',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,

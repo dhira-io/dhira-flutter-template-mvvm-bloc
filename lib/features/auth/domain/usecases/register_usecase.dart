@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:dhira_flutter_template/core/error/failures.dart';
-import 'package:dhira_flutter_template/features/auth/domain/repositories/auth_repository.dart';
-import 'package:dhira_flutter_template/features/auth/domain/entities/user_entity.dart';
+import 'package:todo_app/core/error/failures.dart';
+import 'package:todo_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:todo_app/features/auth/domain/entities/user_entity.dart';
 
 class RegisterUseCase {
   final AuthRepository repository;

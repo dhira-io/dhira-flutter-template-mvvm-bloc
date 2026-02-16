@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:dhira_flutter_template/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:dhira_flutter_template/features/auth/presentation/screens/login_screen.dart';
-import 'package:dhira_flutter_template/features/auth/presentation/screens/register_screen.dart';
-import 'package:dhira_flutter_template/features/dashboard/dashboard_screen.dart';
-import 'package:dhira_flutter_template/core/routing/route_constants.dart';
+import 'package:todo_app/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:todo_app/features/auth/presentation/screens/login_screen.dart';
+import 'package:todo_app/features/auth/presentation/screens/register_screen.dart';
+import 'package:todo_app/features/dashboard/dashboard_screen.dart';
+import 'package:todo_app/core/routing/route_constants.dart';
 
 class AppRouter {
   static final GlobalKey<NavigatorState> rootNavigatorKey =

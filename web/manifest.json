@@ -1,11 +1,11 @@
 {
-    "name": "dhira_flutter_template",
-    "short_name": "dhira_flutter_template",
+    "name": "Todo App",
+    "short_name": "Todo App",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Todo App(Android & IOS)",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
