@@ -3,6 +3,7 @@ class AppConstants {
   static const String accessTokenKey = 'access_token';
   static const String userBoxName = 'user_box';
   static const String settingsBoxName = 'settings_box';
+  static const String todoBoxName = 'todo_box';
 
   // UI Constants
   static const double defaultPadding = 16.0;

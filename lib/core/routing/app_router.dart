@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:todo_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:todo_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:todo_app/features/auth/presentation/screens/register_screen.dart';
-import 'package:todo_app/features/dashboard/dashboard_screen.dart';
+import 'package:todo_app/features/dashboard/presentation/screens/dashboard_screen.dart';
+import 'package:todo_app/features/dashboard/presentation/dashboard_binding.dart';
 import 'package:todo_app/core/routing/route_constants.dart';
 
 class AppRouter {
@@ -29,7 +30,10 @@ class AppRouter {
       GoRoute(
         name: RouteConstants.dashboardName,
         path: RouteConstants.dashboardPath,
-        builder: (context, state) => const DashboardScreen(),
+        builder: (context, state) {
+          DashboardBinding().dependencies();
+          return const DashboardScreen();
+        },
       ),
     ],
     redirect: (context, state) {
