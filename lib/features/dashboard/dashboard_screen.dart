@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dhira_flutter_template/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:dhira_flutter_template/features/auth/presentation/bloc/auth_event.dart';
 import 'package:dhira_flutter_template/features/auth/presentation/bloc/auth_state.dart';
 
+import 'package:go_router/go_router.dart';
+import 'package:dhira_flutter_template/core/routing/route_constants.dart';
 import 'package:dhira_flutter_template/l10n/app_localizations.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -18,9 +19,9 @@ class DashboardScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              context.read<AuthBloc>().add(AuthLogoutRequested());
+              context.push(RouteConstants.settingsPath);
             },
-            icon: const Icon(Icons.logout),
+            icon: const Icon(Icons.settings),
           ),
         ],
       ),

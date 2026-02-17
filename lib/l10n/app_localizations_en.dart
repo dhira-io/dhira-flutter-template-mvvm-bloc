@@ -65,6 +65,36 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get settings => 'Settings';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get theme => 'Theme';
+
+  @override
+  String get darkMode => 'Dark Mode';
+
+  @override
+  String get lightMode => 'Light Mode';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get hindi => 'Hindi';
+
+  @override
+  String get selectLanguage => 'Select Language';
+
+  @override
+  String get general => 'General';
+
+  @override
+  String get account => 'Account';
+
+  @override
   String get dashboardSubtitle => 'This is your enterprise template dashboard.';
 
   @override
@@ -75,4 +105,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get somethingWentWrong => 'Something went wrong. Please try again.';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get logoutConfirmation => 'Are you sure you want to logout?';
 }

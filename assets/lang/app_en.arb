@@ -27,8 +27,20 @@
       }
     }
   },
+  "settings": "Settings",
+  "language": "Language",
+  "theme": "Theme",
+  "darkMode": "Dark Mode",
+  "lightMode": "Light Mode",
+  "english": "English",
+  "hindi": "Hindi",
+  "selectLanguage": "Select Language",
+  "general": "General",
+  "account": "Account",
   "dashboardSubtitle": "This is your enterprise template dashboard.",
   "loginSuccess": "Login Successful",
   "registerSuccess": "Registration Successful",
-  "somethingWentWrong": "Something went wrong. Please try again."
+  "somethingWentWrong": "Something went wrong. Please try again.",
+  "logout": "Logout",
+  "logoutConfirmation": "Are you sure you want to logout?"
 }

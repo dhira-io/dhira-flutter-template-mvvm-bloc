@@ -5,6 +5,12 @@ import '../network/dio_client.dart';
 import '../network/network_info.dart';
 import '../network/session_manager.dart';
 import '../storage/token_repository.dart';
+import '../../features/auth/domain/repositories/auth_repository.dart';
+import '../../features/auth/presentation/bloc/auth_bloc.dart';
+import '../../features/auth/data/repositories/auth_repository_impl.dart';
+import '../../features/settings/presentation/bloc/settings_cubit.dart';
+import '../../features/auth/domain/usecases/login_usecase.dart';
+import '../../features/auth/domain/usecases/register_usecase.dart';
 
 import '../constants/flavor_config.dart';
 
@@ -19,6 +25,25 @@ class CoreBinding extends Bindings {
 
     // Security & Storage
     Get.lazyPut<FlutterSecureStorage>(() => const FlutterSecureStorage());
+    Get.put<SettingsCubit>(SettingsCubit(Get.find()));
+    Get.put<AuthBloc>(
+      AuthBloc(
+        loginUseCase: Get.find(),
+        registerUseCase: Get.find(),
+        authRepository: Get.find(),
+      ),
+    );
+    Get.put<AuthRepository>(
+      AuthRepositoryImpl(
+        remoteDataSource: Get.find(),
+        secureStorageRepository: Get.find(),
+        networkInfo: Get.find(),
+      ),
+    );
+
+    // UseCases
+    Get.lazyPut(() => LoginUseCase(Get.find()));
+    Get.lazyPut(() => RegisterUseCase(Get.find()));
     Get.lazyPut<SecureStorageRepository>(
       () => SecureStorageRepositoryImpl(Get.find<FlutterSecureStorage>()),
     );

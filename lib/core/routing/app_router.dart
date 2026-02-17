@@ -6,6 +6,7 @@ import 'package:dhira_flutter_template/features/auth/presentation/screens/login_
 import 'package:dhira_flutter_template/features/auth/presentation/screens/register_screen.dart';
 import 'package:dhira_flutter_template/features/splash/presentation/screens/splash_screen.dart';
 import 'package:dhira_flutter_template/features/dashboard/dashboard_screen.dart';
+import 'package:dhira_flutter_template/features/settings/presentation/screens/settings_screen.dart';
 import 'package:dhira_flutter_template/core/routing/route_constants.dart';
 import 'package:dhira_flutter_template/core/routing/go_router_refresh_stream.dart';
 
@@ -38,6 +39,11 @@ class AppRouter {
         name: RouteConstants.dashboardName,
         path: RouteConstants.dashboardPath,
         builder: (context, state) => const DashboardScreen(),
+      ),
+      GoRoute(
+        name: RouteConstants.settingsName,
+        path: RouteConstants.settingsPath,
+        builder: (context, state) => const SettingsScreen(),
       ),
     ],
     redirect: (context, state) {

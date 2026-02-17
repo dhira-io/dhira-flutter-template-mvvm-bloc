@@ -10,6 +10,8 @@ import 'core/theme/app_theme.dart';
 import 'core/storage/hive_service.dart';
 import 'features/auth/presentation/auth_binding.dart';
 import 'features/auth/presentation/bloc/auth_bloc.dart';
+import 'features/settings/presentation/bloc/settings_cubit.dart';
+import 'features/settings/presentation/bloc/settings_state.dart';
 import 'core/network/session_watcher.dart';
 
 void main() async {
@@ -45,22 +47,30 @@ class DhiraApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthBloc>(create: (context) => Get.find<AuthBloc>()),
+        BlocProvider<SettingsCubit>(
+          create: (context) => Get.find<SettingsCubit>(),
+        ),
       ],
       child: SessionWatcher(
-        child: MaterialApp.router(
-          title: 'Dhira Flutter Template',
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          themeMode: ThemeMode.system,
-          routerConfig: AppRouter.router,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: AppLocalizations.supportedLocales,
+        child: BlocBuilder<SettingsCubit, SettingsState>(
+          builder: (context, state) {
+            return MaterialApp.router(
+              title: 'Dhira Flutter Template',
+              debugShowCheckedModeBanner: false,
+              theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
+              themeMode: state.themeMode,
+              locale: state.locale,
+              routerConfig: AppRouter.router,
+              localizationsDelegates: const [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: AppLocalizations.supportedLocales,
+            );
+          },
         ),
       ),
     );

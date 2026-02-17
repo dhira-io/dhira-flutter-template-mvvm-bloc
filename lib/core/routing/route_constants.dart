@@ -12,5 +12,8 @@ class RouteConstants {
   static const String forgotPasswordPath = '/forgot-password';
 
   static const String dashboardName = 'dashboard';
-  static const String dashboardPath = '/';
+  static const String dashboardPath = '/dashboard';
+
+  static const String settingsName = 'settings';
+  static const String settingsPath = '/settings';
 }
