@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import '../../../../shared/extensions/datetime_extensions.dart';
 import '../../domain/entities/todo_entity.dart';
 
 class TodoItem extends StatelessWidget {
@@ -67,7 +67,7 @@ class TodoItem extends StatelessWidget {
             ],
             const SizedBox(height: 8),
             Text(
-              DateFormat('MMM d, yyyy • hh:mm a').format(todo.createdAt),
+              todo.createdAt.toReadableDateTime(),
               style: TextStyle(fontSize: 12, color: Colors.grey[400]),
             ),
           ],

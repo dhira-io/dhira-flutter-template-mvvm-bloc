@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
+import 'app_localizations_hi.dart';
 
 // ignore_for_file: type=lint
 
@@ -92,7 +93,10 @@ abstract class AppLocalizations {
       ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('en')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('en'),
+    Locale('hi'),
+  ];
 
   /// The title of the application
   ///
@@ -196,6 +200,18 @@ abstract class AppLocalizations {
   /// **'Dashboard'**
   String get dashboard;
 
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @logoutConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get logoutConfirmation;
+
   /// No description provided for @welcomeUser.
   ///
   /// In en, this message translates to:
@@ -225,6 +241,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Something went wrong. Please try again.'**
   String get somethingWentWrong;
+
+  /// No description provided for @noTasksYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No tasks yet. Add one!'**
+  String get noTasksYet;
+
+  /// No description provided for @errorMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: {message}'**
+  String errorMessage(String message);
+
+  /// No description provided for @deleteTask.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Task?'**
+  String get deleteTask;
+
+  /// No description provided for @deleteTaskConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this task?'**
+  String get deleteTaskConfirmation;
+
+  /// No description provided for @markAsComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as Complete?'**
+  String get markAsComplete;
+
+  /// No description provided for @markAsCompleteConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to mark this task as complete?'**
+  String get markAsCompleteConfirmation;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// No description provided for @username.
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get username;
+
+  /// No description provided for @passwordLengthError.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
+  String get passwordLengthError;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirmPassword;
+
+  /// No description provided for @passwordsDoNotMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get passwordsDoNotMatch;
 }
 
 class _AppLocalizationsDelegate
@@ -238,7 +338,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en'].contains(locale.languageCode);
+      <String>['en', 'hi'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -249,6 +349,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'en':
       return AppLocalizationsEn();
+    case 'hi':
+      return AppLocalizationsHi();
   }
 
   throw FlutterError(

@@ -51,8 +51,8 @@ class _LoginScreenState extends State<LoginScreen> {
         listener: (context, state) {
           state.maybeWhen(
             authenticated: (_) {
-              SnackbarUtils.showSuccess(context, 'Login Successful!');
-              },
+              SnackbarUtils.showSuccess(context, l10n.loginSuccess);
+            },
             error: (message) => SnackbarUtils.showError(context, message),
             orElse: () {},
           );
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 48),
                     AppTextField(
                       controller: _usernameController,
-                      labelText: 'Username',
+                      labelText: l10n.username,
                       prefixIcon: const Icon(Icons.person_outline),
                       keyboardType: TextInputType.text,
                       validator: (value) {
@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           return l10n.fieldRequired;
                         }
                         if (value.length < 6) {
-                          return 'Password must be at least 6 characters';
+                          return l10n.passwordLengthError;
                         }
                         return null;
                       },

@@ -60,6 +60,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashboard => 'Dashboard';
 
   @override
+  String get logout => 'Logout';
+
+  @override
+  String get logoutConfirmation => 'Are you sure you want to logout?';
+
+  @override
   String welcomeUser(String name) {
     return 'Welcome, $name!';
   }
@@ -75,4 +81,50 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get somethingWentWrong => 'Something went wrong. Please try again.';
+
+  @override
+  String get noTasksYet => 'No tasks yet. Add one!';
+
+  @override
+  String errorMessage(String message) {
+    return 'Error: $message';
+  }
+
+  @override
+  String get deleteTask => 'Delete Task?';
+
+  @override
+  String get deleteTaskConfirmation =>
+      'Are you sure you want to delete this task?';
+
+  @override
+  String get markAsComplete => 'Mark as Complete?';
+
+  @override
+  String get markAsCompleteConfirmation =>
+      'Are you sure you want to mark this task as complete?';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get username => 'Username';
+
+  @override
+  String get passwordLengthError => 'Password must be at least 6 characters';
+
+  @override
+  String get confirmPassword => 'Confirm Password';
+
+  @override
+  String get passwordsDoNotMatch => 'Passwords do not match';
 }

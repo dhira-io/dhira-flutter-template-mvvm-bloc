@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/l10n/app_localizations.dart';
 
 class AppDialogs {
   static Future<void> showErrorDialog(
@@ -7,10 +8,11 @@ class AppDialogs {
     String? title,
     VoidCallback? onConfirm,
   }) {
+    final l10n = AppLocalizations.of(context)!;
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(title ?? 'Error'),
+        title: Text(title ?? l10n.error),
         content: Text(message),
         actions: [
           TextButton(
@@ -18,7 +20,7 @@ class AppDialogs {
               Navigator.of(context).pop();
               if (onConfirm != null) onConfirm();
             },
-            child: const Text('OK'),
+            child: Text(l10n.ok),
           ),
         ],
       ),
@@ -31,22 +33,23 @@ class AppDialogs {
     String? title,
     required VoidCallback onConfirm,
   }) {
+    final l10n = AppLocalizations.of(context)!;
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(title ?? 'Confirm'),
+        title: Text(title ?? l10n.confirm),
         content: Text(message),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
+            child: Text(l10n.cancel),
           ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
               onConfirm();
             },
-            child: const Text('Confirm'),
+            child: Text(l10n.confirm),
           ),
         ],
       ),

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:todo_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:todo_app/features/auth/presentation/bloc/auth_event.dart';
 import 'package:todo_app/l10n/app_localizations.dart';
+import '../../../../shared/dialogs/app_dialogs.dart';
 import '../../domain/entities/todo_entity.dart';
 import '../bloc/dashboard_bloc.dart';
 import '../bloc/dashboard_event.dart';
@@ -86,7 +87,13 @@ I have introduced a `SplashScreen` and a global redirection system to provide a 
           actions: [
             IconButton(
               onPressed: () {
-                context.read<AuthBloc>().add(AuthLogoutRequested());
+                AppDialogs.showConfirmationDialog(
+                  context,
+                  title: l10n.logout,
+                  message: l10n.logoutConfirmation,
+                  onConfirm: () =>
+                      context.read<AuthBloc>().add(AuthLogoutRequested()),
+                );
               },
               icon: const Icon(Icons.logout),
             ),
@@ -97,22 +104,23 @@ I have introduced a `SplashScreen` and a global redirection system to provide a 
             return state.when(
               initial: () => const Center(child: CircularProgressIndicator()),
               loading: () => const Center(child: CircularProgressIndicator()),
-              error: (message) => Center(child: Text('Error: $message')),
+              error: (message) =>
+                  Center(child: Text(l10n.errorMessage(message))),
               loaded: (todos) {
                 if (todos.isEmpty) {
-                  return const Center(
+                  return Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.assignment_outlined,
                           size: 64,
                           color: Colors.grey,
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
-                          'No tasks yet. Add one!',
-                          style: TextStyle(color: Colors.grey),
+                          l10n.noTasksYet,
+                          style: const TextStyle(color: Colors.grey),
                         ),
                       ],
                     ),
@@ -125,13 +133,33 @@ I have introduced a `SplashScreen` and a global redirection system to provide a 
                     final todo = todos[index];
                     return TodoItem(
                       todo: todo,
-                      onToggle: (t) => _dashboardBloc.add(
-                        DashboardEvent.updateTodo(
-                          t.copyWith(isCompleted: !t.isCompleted),
-                        ),
+                      onToggle: (t) {
+                        if (!t.isCompleted) {
+                          AppDialogs.showConfirmationDialog(
+                            context,
+                            title: l10n.markAsComplete,
+                            message: l10n.markAsCompleteConfirmation,
+                            onConfirm: () => _dashboardBloc.add(
+                              DashboardEvent.updateTodo(
+                                t.copyWith(isCompleted: true),
+                              ),
+                            ),
+                          );
+                        } else {
+                          _dashboardBloc.add(
+                            DashboardEvent.updateTodo(
+                              t.copyWith(isCompleted: false),
+                            ),
+                          );
+                        }
+                      },
+                      onDelete: (t) => AppDialogs.showConfirmationDialog(
+                        context,
+                        title: l10n.deleteTask,
+                        message: l10n.deleteTaskConfirmation,
+                        onConfirm: () =>
+                            _dashboardBloc.add(DashboardEvent.deleteTodo(t.id)),
                       ),
-                      onDelete: (t) =>
-                          _dashboardBloc.add(DashboardEvent.deleteTodo(t.id)),
                       onTap: (t) => _showTodoDialog(todo: t),
                     );
                   },

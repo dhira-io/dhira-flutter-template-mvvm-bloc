@@ -19,6 +19,8 @@
   "invalidEmail": "Invalid Email",
   "passwordTooShort": "Password too short",
   "dashboard": "Dashboard",
+  "logout": "Logout",
+  "logoutConfirmation": "Are you sure you want to logout?",
   "welcomeUser": "Welcome, {name}!",
   "@welcomeUser": {
     "placeholders": {
@@ -30,5 +32,26 @@
   "dashboardSubtitle": "This is your enterprise template dashboard.",
   "loginSuccess": "Login Successful",
   "registerSuccess": "Registration Successful",
-  "somethingWentWrong": "Something went wrong. Please try again."
+  "somethingWentWrong": "Something went wrong. Please try again.",
+  "noTasksYet": "No tasks yet. Add one!",
+  "errorMessage": "Error: {message}",
+  "@errorMessage": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteTask": "Delete Task?",
+  "deleteTaskConfirmation": "Are you sure you want to delete this task?",
+  "markAsComplete": "Mark as Complete?",
+  "markAsCompleteConfirmation": "Are you sure you want to mark this task as complete?",
+  "confirm": "Confirm",
+  "cancel": "Cancel",
+  "ok": "OK",
+  "error": "Error",
+  "username": "Username",
+  "passwordLengthError": "Password must be at least 6 characters",
+  "confirmPassword": "Confirm Password",
+  "passwordsDoNotMatch": "Passwords do not match"
 }

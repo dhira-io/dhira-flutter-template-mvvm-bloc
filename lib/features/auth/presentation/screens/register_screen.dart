@@ -63,7 +63,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         listener: (context, state) {
           state.maybeWhen(
             authenticated: (_) {
-              SnackbarUtils.showSuccess(context, 'Registration Successful!');
+              SnackbarUtils.showSuccess(context, l10n.registerSuccess);
               context.go(RouteConstants.dashboardPath);
             },
             error: (message) => SnackbarUtils.showError(context, message),
@@ -150,7 +150,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(height: 16),
                     AppTextField(
                       controller: _confirmPasswordController,
-                      labelText: 'Confirm Password',
+                      labelText: l10n.confirmPassword,
                       prefixIcon: const Icon(Icons.lock_outline),
                       obscureText: _obscureConfirmPassword,
                       suffixIcon: IconButton(
@@ -170,7 +170,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           return l10n.fieldRequired;
                         }
                         if (value != _passwordController.text) {
-                          return 'Passwords do not match';
+                          return l10n.passwordsDoNotMatch;
                         }
                         return null;
                       },
