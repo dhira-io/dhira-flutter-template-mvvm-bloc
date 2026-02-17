@@ -26,10 +26,27 @@ lib/
 │   ├── storage/        # Local storage (Secure Storage, Token Repo, Hive)
 │   ├── theme/          # App-wide theme and styling (Material 3)
 │   └── utils/          # Utility classes and helpers
+
 ├── features/           # Feature-driven modules (Clean Architecture)
-│   ├── auth/           # Authentication feature
+│   ├── auth/           # Authentication feature (Full BLoC)
+│   │   ├── data/       # Data Layer
+│   │   │   ├── datasources/ # Remote & Local data sources
+│   │   │   ├── models/      # Data Transfer Objects (DTOs)
+│   │   │   └── repositories/# Repository Implementations
+│   │   ├── domain/     # Domain Layer
+│   │   │   ├── entities/    # Core business objects
+│   │   │   ├── repositories/# Abstract Repository Interfaces
+│   │   │   └── usecases/    # Business logic encapsulated
+│   │   └── presentation/# Presentation Layer
+│   │   │   ├── bloc/        # BLoC state management
+│   │   │   ├── screens/     # UI Screens
+│   │   │   └── widgets/     # Feature-specifc widgets
 │   ├── dashboard/      # Main dashboard feature
-│   ├── settings/       # Settings feature (Theme, Language)
+│   ├── settings/       # Settings feature (Cubit for less boilerplate)
+│   │   └── presentation/# Presentation Layer
+│   │   │   ├── bloc/        # Cubit state management
+│   │   │   ├── screens/     # UI Screens
+│   │   │   └── widgets/     # Feature-specifc widgets
 │   └── splash/         # Splash screen and initialization
 ├── shared/             # Reusable UI components and extensions
 │   ├── components/     # Atomic UI widgets (Buttons, TextFields, Loaders)
