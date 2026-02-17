@@ -127,4 +127,34 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get passwordsDoNotMatch => 'पासवर्ड मेल नहीं खाते';
+
+  @override
+  String get settings => 'सेटिंग्स';
+
+  @override
+  String get language => 'भाषा';
+
+  @override
+  String get theme => 'थीम';
+
+  @override
+  String get darkMode => 'डार्क मोड';
+
+  @override
+  String get lightMode => 'लाइट मोड';
+
+  @override
+  String get english => 'अंग्रेजी';
+
+  @override
+  String get hindi => 'हिंदी';
+
+  @override
+  String get selectLanguage => 'भाषा चुनें';
+
+  @override
+  String get general => 'सामान्य';
+
+  @override
+  String get account => 'खाता';
 }

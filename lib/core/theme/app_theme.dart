@@ -15,6 +15,7 @@ class AppTheme {
         surface: AppColors.backgroundLight,
       ),
       scaffoldBackgroundColor: AppColors.backgroundLight,
+      cardColor: AppColors.surfaceLight,
       fontFamily: 'Inter',
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.primary,
@@ -56,6 +57,7 @@ class AppTheme {
         surface: AppColors.backgroundDark,
       ),
       scaffoldBackgroundColor: AppColors.backgroundDark,
+      cardColor: AppColors.surfaceDark,
       fontFamily: 'Inter',
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.surfaceDark,

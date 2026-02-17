@@ -53,5 +53,15 @@
   "username": "Username",
   "passwordLengthError": "Password must be at least 6 characters",
   "confirmPassword": "Confirm Password",
-  "passwordsDoNotMatch": "Passwords do not match"
+  "passwordsDoNotMatch": "Passwords do not match",
+  "settings": "Settings",
+  "language": "Language",
+  "theme": "Theme",
+  "darkMode": "Dark Mode",
+  "lightMode": "Light Mode",
+  "english": "English",
+  "hindi": "Hindi",
+  "selectLanguage": "Select Language",
+  "general": "General",
+  "account": "Account"
 }

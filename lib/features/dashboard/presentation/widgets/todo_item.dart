@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/extensions/datetime_extensions.dart';
 import '../../domain/entities/todo_entity.dart';
 
@@ -17,7 +18,9 @@ class TodoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Card(
+      color: isDark ? const Color(0xFF2C2C2C) : Colors.white,
       elevation: 2,
       margin: const EdgeInsets.only(bottom: 12),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -29,7 +32,9 @@ class TodoItem extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: todo.isCompleted ? Colors.green.withOpacity(0.1) : null,
+              color: todo.isCompleted
+                  ? Colors.green.withValues(alpha: 0.1)
+                  : null,
               border: Border.all(
                 color: todo.isCompleted ? Colors.green : Colors.grey[400]!,
                 width: 2,
@@ -61,7 +66,11 @@ class TodoItem extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  color: todo.isCompleted ? Colors.grey[400] : Colors.grey[600],
+                  color: todo.isCompleted
+                      ? (isDark ? Colors.grey[600] : Colors.grey[400])
+                      : (isDark
+                            ? AppColors.textSecondaryDark
+                            : AppColors.textSecondaryLight),
                 ),
               ),
             ],

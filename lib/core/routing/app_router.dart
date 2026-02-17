@@ -7,6 +7,7 @@ import 'package:todo_app/features/auth/presentation/screens/register_screen.dart
 import 'package:todo_app/features/splash/presentation/screens/splash_screen.dart';
 import 'package:todo_app/features/dashboard/presentation/screens/dashboard_screen.dart';
 import 'package:todo_app/features/dashboard/presentation/dashboard_binding.dart';
+import 'package:todo_app/features/settings/presentation/screens/settings_screen.dart';
 import 'package:todo_app/core/routing/route_constants.dart';
 import 'package:todo_app/core/routing/go_router_refresh_stream.dart';
 import 'dart:developer' as developer;
@@ -44,6 +45,15 @@ class AppRouter {
           return const DashboardScreen();
         },
       ),
+      GoRoute(
+        name: RouteConstants.settingsName,
+        path: RouteConstants.settingsPath,
+        builder: (context, state) {
+          // Ensure SettingsCubit is available if not provided globally yet,
+          // but we will provide it globally in main.dart
+          return const SettingsScreen();
+        },
+      ),
     ],
     redirect: (context, state) {
       final authBloc = Get.find<AuthBloc>();
@@ -55,7 +65,7 @@ class AppRouter {
       );
 
       // Check if auth state is determined
-      final bool isDetermined = authState.maybeWhen(
+      final isDetermined = authState.maybeWhen(
         authenticated: (_) => true,
         unauthenticated: () => true,
         error: (_) => true,

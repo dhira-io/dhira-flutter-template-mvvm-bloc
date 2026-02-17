@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:todo_app/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:todo_app/features/auth/presentation/bloc/auth_event.dart';
 import 'package:todo_app/l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../core/routing/route_constants.dart';
 import '../../../../shared/dialogs/app_dialogs.dart';
 import '../../domain/entities/todo_entity.dart';
 import '../bloc/dashboard_bloc.dart';
@@ -87,15 +87,9 @@ I have introduced a `SplashScreen` and a global redirection system to provide a 
           actions: [
             IconButton(
               onPressed: () {
-                AppDialogs.showConfirmationDialog(
-                  context,
-                  title: l10n.logout,
-                  message: l10n.logoutConfirmation,
-                  onConfirm: () =>
-                      context.read<AuthBloc>().add(AuthLogoutRequested()),
-                );
+                context.push(RouteConstants.settingsPath);
               },
-              icon: const Icon(Icons.logout),
+              icon: const Icon(Icons.settings),
             ),
           ],
         ),
