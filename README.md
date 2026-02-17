@@ -14,6 +14,7 @@ The project follows the principles of **Clean Architecture** combined with the *
 - **Presentation Layer**: The UI and state management logic. Contains BLoCs, Screens (Views), and Widgets.
 
 ### � Folder Structure
+```text
 lib/
 ├── core/               # Core framework and shared infrastructure
 │   ├── constants/      # Global constants and flavor configs
