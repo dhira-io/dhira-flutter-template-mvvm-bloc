@@ -1,3 +1,4 @@
+import '../../../../core/constants/api_constants.dart';
 import '../../../../core/network/dio_client.dart';
 import '../models/auth_model.dart';
 
@@ -22,7 +23,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String password,
   }) async {
     final response = await _dioClient.post(
-      '/auth/login',
+      ApiConstants.endPointLogin,
       data: {'username': username, 'password': password},
     );
 
@@ -37,7 +38,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }) async {
     // DummyJSON users/add returns the added user
     final response = await _dioClient.post(
-      '/users/add',
+      ApiConstants.endPointRegister,
       data: {'firstName': name, 'email': email, 'password': password},
     );
 
