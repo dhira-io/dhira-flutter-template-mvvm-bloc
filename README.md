@@ -63,8 +63,16 @@ lib/
 Follow this guide to set up the project locally.
 
 ### 1. Clone the Repository
+
+**HTTPS**
 ```bash
-git clone <repository_url>
+git clone https://github.com/dhira-io/dhira-flutter-template-mvvm-bloc.git
+cd dhira-flutter-template-mvvm-bloc
+```
+
+**SSH**
+```bash
+git clone git@github.com:dhira-io/dhira-flutter-template-mvvm-bloc.git
 cd dhira-flutter-template-mvvm-bloc
 ```
 
