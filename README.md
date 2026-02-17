@@ -14,7 +14,6 @@ The project follows the principles of **Clean Architecture** combined with the *
 - **Presentation Layer**: The UI and state management logic. Contains BLoCs, Screens (Views), and Widgets.
 
 ### � Folder Structure
-```text
 lib/
 ├── core/               # Core framework and shared infrastructure
 │   ├── constants/      # Global constants and flavor configs
@@ -22,20 +21,57 @@ lib/
 │   ├── error/          # Global exception and failure handling
 │   ├── network/        # Networking layer (Dio, Interceptors, Network Info)
 │   ├── routing/        # App routing (GoRouter)
+│   ├── security/       # Security utilities and encryption
 │   ├── storage/        # Local storage (Secure Storage, Token Repo, Hive)
-│   └── theme/          # App-wide theme and styling (Material 3)
+│   ├── theme/          # App-wide theme and styling (Material 3)
+│   └── utils/          # Utility classes and helpers
 ├── features/           # Feature-driven modules (Clean Architecture)
-│   ├── auth/           # Authentication feature reference
-│   │   ├── data/       # Models, Repositories Impl, Data Sources
-│   │   ├── domain/     # Entities, Repositories Interfaces, Use Cases
-│   │   └── presentation/# BLoCs, Screens, Bindings
-│   └── dashboard/      # Main dashboard feature
+│   ├── auth/           # Authentication feature
+│   ├── dashboard/      # Main dashboard feature
+│   ├── settings/       # Settings feature (Theme, Language)
+│   └── splash/         # Splash screen and initialization
 ├── shared/             # Reusable UI components and extensions
 │   ├── components/     # Atomic UI widgets (Buttons, TextFields, Loaders)
 │   ├── dialogs/        # Global dialogs and overlays
 │   └── extensions/     # Common Dart/Flutter extensions
 ├── l10n/               # Generated localization files
 └── main.dart           # Unified entry point & bootstrapping
+```
+
+---
+
+## 🛠️ Project Setup
+
+Follow this guide to set up the project locally.
+
+### 1. Clone the Repository
+```bash
+git clone <repository_url>
+cd dhira-flutter-template-mvvm-bloc
+```
+
+### 2. Install Flutter SDK
+- Download the latest Flutter SDK from the [official website](https://docs.flutter.dev/get-started/install).
+- Extract the zip file and add the `flutter/bin` directory to your system path.
+- Verify the installation:
+  ```bash
+  flutter doctor
+  ```
+
+### 3. Configure Android Studio
+1. Open **Android Studio**.
+2. Go to **Settings/Preferences > Plugins**.
+3. Search for and install the **Dart** and **Flutter** plugins.
+4. Restart Android Studio.
+5. Open the project: **File > Open** and select the project folder.
+6. Run `flutter pub get` to install dependencies.
+
+### 4. Run the Application
+Select an emulator or physical device and run the app for a specific environment:
+
+```bash
+# Run Development Flavor
+flutter run -t lib/main_dev.dart --flavor dev
 ```
 
 ### �🗺️ Dependency Graph
